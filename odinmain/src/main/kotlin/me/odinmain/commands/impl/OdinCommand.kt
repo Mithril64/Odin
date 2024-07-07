@@ -33,15 +33,14 @@ val mainCommand = commodore("od", "odin") {
 
     }
 
-    if (!onLegitVersion) {
-        literal("set") {
-            runs { yaw: Float, pitch: Float ->
-                mc.thePlayer.rotationYaw = yaw.coerceIn(minimumValue = -180f, maximumValue = 180f)
-                mc.thePlayer.rotationPitch = pitch.coerceIn(minimumValue = -90f, maximumValue = 90f)
-            }
+    
+    literal("set") {
+        runs { yaw: Float, pitch: Float ->
+            mc.thePlayer.rotationYaw = yaw.coerceIn(minimumValue = -180f, maximumValue = 180f)
+            mc.thePlayer.rotationPitch = pitch.coerceIn(minimumValue = -90f, maximumValue = 90f)
         }
     }
-    
+
     literal("sl").runs {
         val amount = mc.thePlayer.inventory.mainInventory.find { it?.itemID == "SPIRIT_LEAP" }?.stackSize ?: 0
         if (amount != 16) modMessage("gfs spirit_leap ${16 - amount}") else modMessage("§cAlready at max stack size.")
